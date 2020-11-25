@@ -1,13 +1,25 @@
 {
     "name": "TTS STT Extension",
     "version": "1.0",
-    "description": "Build an Extension!",
+    "description": "HCI TTS STT Project",
     "manifest_version": 2,
     "permissions": [
-        "contextMenus"
-      ],
+        "contextMenus",
+        "tabs",
+        "http://*/*",
+        "https://*/*",
+        "activeTab"
+    ],
     "background": {
-        "scripts": ["test.js"]
+        "persistent": false,
+        "scripts": ["TTS.js"]
+    },
+
+
+
+    "browser_action": {
+        "default_popup": "menu.html"
     }
- 
-  }
+
+
+}
