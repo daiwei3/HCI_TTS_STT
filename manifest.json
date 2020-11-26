@@ -11,14 +11,12 @@
         "activeTab"
     ],
     "background": {
-        "persistent": false,
-        "scripts": ["TTS.js"]
+        "persistent": true,
+        "page": "backgroud.html"
     },
-
-
-
     "browser_action": {
-        "default_popup": "menu.html"
+        "default_title": "TTS STT Extension",
+        "default_popup": "popup.html"
     }
 
 
