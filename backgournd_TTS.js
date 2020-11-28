@@ -49,7 +49,7 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 
 // Set up context menu tree at install time.
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onStartup.addListener(function() {
     // Create one tts selection in menu
 
     var id = chrome.contextMenus.create({

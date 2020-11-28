@@ -1,4 +1,4 @@
-<html>
+<html style="height: 200px;">
 
 <head>
     <title>menu Popup</title>
@@ -8,31 +8,46 @@
 </head>
 
 <body>
-    <div id="audio_control_div" style="display:inline-block;width: 200; text-align: center;">
-        <div>
-            <button class="button" id="play_button" value="play">
-              <i class="icon fas fa-pause-circle fa-5x" id="play_pause_icon" ></i>
-            </button>
+    <div style="display:inline-block; width: 300; background-color: slategrey;padding:5; margin: 0;border-radius:10px;margin-bottom: 5px;align-content: center;">
+        <i class="fab fa-readme label_icon" style="color:white; padding-left: 5px ;padding-right: 10px;"></i>
 
-            <button class="button" id="stop_button"><i class="icon fas fa-stop-circle fa-5x" id="stop_icon"></i></button>
+        <label style="font-size: 15;   vertical-align:middle;padding:0; margin: 0;padding-right:30;color:white;height: 34px; margin-bottom: 5px;"> TTS STT Project</label>
+        <hr>
+
+        <div id="audio_control_div" style="display:inline-block;width: 300; text-align: left;margin-top: 10px;">
+            <div>
+                <button class="button" id="backward_button"><i class="icon fas fa-step-backward fa-3x" id="backward_icon"></i></button>
+                <button class="button" id="play_button" value="play">
+                    <i class="icon fas fa-play-circle fa-3x" id="play_pause_icon" ></i>
+                </button>
+                <button class="button" id="stop_button"><i class="icon fas fa-stop-circle fa-3x" id="stop_icon"></i></button>
+                <button class="button" id="forward_button"><i class="icon fas fa-step-forward fa-3x" id="forward_icon"></i></button>
+
+            </div>
+            <div class="time_label">
+
+                <label id="current_time_label">00:00:00</label>
+                <label> / </label>
+                <label id="duration_label">00:00:00</label>
+
+            </div>
+
+            <div class="slidecontainer">
+
+                <input type="range" min="0" max="100" value="0" class="sliderBar" id="audio_duration_bar">
+            </div>
+
         </div>
 
-        <label id="current_time_label">00:00:00</label>
-        <label id=> / </label>
-        <label id="duration_label">00:00:00</label>
-        <div class="slidecontainer">
 
-            <input type="range" min="0" max="100" value="0" class="sliderBar" id="audio_duration_bar">
+        <div style="display:inline-block;padding:5; margin: 0;border-radius:10px;text-align: right;vertical-align:middle;">
+
+            <div>
+                <i class="fa fa-volume-up label_icon" style="color:white; padding-left: 5px ;padding-right: 10px;"></i>
+                <input type="range" min="0" max="100" value="100" class="volumeBar" id="audio_volume_bar">
+            </div>
+            </label>
         </div>
-
-    </div>
-
-    <hr></hr>
-    <div style="display:inline-block; width: 200; background-color: slategrey;padding:5; margin: 0;border-radius:10px">
-        <i class="fa fa-volume-up label_icon" style="color:white; padding-left: 5px ;padding-right: 10px;"></i>
-        <label style="font-size: 15;   vertical-align:middle;padding:0; margin: 0;padding-right:30;color:white;height: 34px;"> Volume</label>
-        <input type="range" min="0" max="100" value="100" class="volumeBar" id="audio_volume_bar">
-        </label>
     </div>
     <!--
     <div style="display:inline-block; width: 200; background-color: slategrey;padding:5; margin: 0;">
@@ -45,18 +60,62 @@
   -->
     </div>
 
-    <div id="play_list" style=" width: 200; background-color:slategrey;padding:5; margin: 0;margin-top: 5;border-radius:10px">
-        <label style="font-size: 15;margin-bottom: 5px;color:white">Previous TTS</label>
-        <select name="srcs" id="srcs" style="width: 100%;margin-top: 5;" size=10>
-    
+    <div id="play_list" style=" width: 300; background-color:slategrey;padding:5; margin: 0;margin-top: 5;border-radius:10px">
+        <div id="previous_TTS_header">
+            <label style="font-size: 15;margin-bottom: 5px;color:white">Previous TTS</label><i id="previous_TTS_icon" class="fas fa-caret-down" style="color: white;margin-left: 5;"></i>
+        </div>
+        <div id="previous_TTS_list">
+            <select class="srcs" id="srcs" style="width: 100%;margin-top: 5;" size=5>
+        </div>
         </select>
-    </div>
+        </div>
 </body>
 
 
 <style>
     body {
         font-family: "Montserrat";
+        margin-left: 5;
+        margin-right: 5;
+        margin-bottom: 5;
+        padding: 0;
+        background-color: antiquewhite;
+        -webkit-user-select: none;
+    }
+    
+    .flip {
+        transform: rotate(-180deg);
+    }
+    
+    .srcs {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-size: 15;
+        background-color: whitesmoke;
+        opacity: 0.9;
+    }
+    
+    .src:focus {
+        border: none;
+    }
+    
+    .srcs option {
+        padding: 3;
+        margin: 0;
+        padding-bottom: 2px;
+    }
+    
+    .srcs option::selected {
+        font-size: 20;
+    }
+    
+    .time_label {
+        text-align: right;
+        color: white;
+        font-size: 15px;
+        margin-top: 10px;
+        margin-right: 20px;
     }
     
     .label_icon {
@@ -64,8 +123,10 @@
     }
     
     .volumeBar {
+        opacity: 0.7;
         overflow: hidden;
         -webkit-appearance: none;
+        -webkit-transition: .2s;
         position: relative;
         display: inline-block;
         width: 70px;
@@ -88,9 +149,14 @@
         outline: none;
     }
     
+    .volumeBar:hover {
+        opacity: 1;
+    }
+    
     .button {
-        margin: 0;
+        margin-left: 20px;
         padding: 0;
+        width: 40;
         border: none;
         background-color: transparent;
     }
@@ -98,8 +164,7 @@
     .icon {
         margin: 0;
         padding: 0;
-        height: 40px;
-        color: slategrey;
+        color: white;
     }
     
     .icon:disabled {
@@ -107,11 +172,11 @@
     }
     
     .icon:hover {
-        color: steelblue;
+        color: lightgray;
     }
     
     .icon:active {
-        color: darkslategray;
+        color: darkgray;
     }
     
     .button:focus {
@@ -181,26 +246,31 @@
     
     .slidecontainer {
         width: 100%;
-        /* Width of the outside container */
+        margin: 0 0 10 0;
     }
-    /* The slider Bar itself */
     
     .sliderBar {
+        -webkit-appearance: none;
         width: 100%;
-        /* Full-width */
-        height: 5px;
-        /* Specified height */
+        height: 10px;
         background: #d3d3d3;
-        /* Grey background */
         outline: none;
-        /* Remove outline */
+        overflow: hidden;
         opacity: 0.7;
-        /* Set transparency (for mouse-over effects on hover) */
         -webkit-transition: .2s;
-        /* 0.2 seconds transition on hover */
         transition: opacity .2s;
     }
-    /* Mouse-over effects */
+    
+    .sliderBar::-webkit-slider-thumb {
+        margin: 0;
+        padding: 0;
+        height: 0px;
+        width: 0px;
+        background: transparent;
+        box-shadow: -200px 0 0 200px rgb(15, 63, 78);
+        cursor: pointer;
+        -webkit-appearance: none;
+    }
     
     .sliderBar:hover {
         opacity: 1;
