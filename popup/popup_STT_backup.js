@@ -1,6 +1,6 @@
 // init the option window when clicked
 function init() {
-	/*
+    /*
 	// restore user's option from storage
     chrome.storage.sync.get(null, function (items) {
         if (Object.keys(items).length == 0) {
@@ -25,25 +25,25 @@ function init() {
         };
     });
 	*/
-	// inject script to count the audio number
-	chrome.tabs.executeScript({code: returnAN});
-	var background = chrome.extension.getBackgroundPage();
-	var textArea = document.getElementById("result");
-	textArea.textContent = background.stringReturn;
+    // inject script to count the audio number
+    chrome.tabs.executeScript({ code: returnAN });
+    var background = chrome.extension.getBackgroundPage();
+    var textArea = document.getElementById("result");
+    textArea.textContent = background.stringReturn;
 }
 
 const returnAN =
-	`var audioNumber = document.getElementsByTagName("audio").length;
+    `var audioNumber = document.getElementsByTagName("audio").length;
 	 chrome.runtime.sendMessage({type: "aun", value: audioNumber});`;
 
 
 // save user's option when check box chosen
 function save_options() {
-	var tts = "";
-	var elements = document.getElementsByName("uniquetab");
+    var tts = "";
+    var elements = document.getElementsByName("uniquetab");
     for (var i = 0; i < elements.length; i++)
         if (elements[i].checked)
-			tts = elements[i].value;
+            tts = elements[i].value;
     chrome.storage.sync.set({
         time2save: tts
     });
@@ -51,18 +51,10 @@ function save_options() {
 
 window.addEventListener("load", init);
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
-{
-	if(request.type == "aun"){
-		var test = document.getElementById("audionumber");
-		test.textContent = request.value;
-	}
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.type == "aun") {
+        var test = document.getElementById("audionumber");
+        test.textContent = request.value;
+    }
 });
-
-
-
-
-
-
-
-

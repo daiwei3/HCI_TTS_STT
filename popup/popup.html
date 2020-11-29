@@ -1,0 +1,108 @@
+<html style="height: 200px;">
+
+
+<head>
+    <title>menu Popup</title>
+    <script src="../libs/Font_Awesome_5_15_1.js"></script>
+    <script src="../libs/jquery-3.5.1.min.js"></script>
+    <script src="./popup_TTS.js"></script>
+    <script src="./popup_STT.js"></script>
+
+    <link rel="stylesheet" href="css/popup.css">
+</head>
+
+<body>
+    <div style="display:inline-block; width: 300; background-color: slategrey;padding:5; margin: 0;border-radius:10px;margin-bottom: 5px;align-content: center;">
+        <i class="fab fa-readme label_icon" style="color:white; padding-left: 5px ;padding-right: 10px;"></i>
+
+        <label style="font-size: 15;   vertical-align:middle;padding:0; margin: 0;padding-right:30;color:white;height: 34px; margin-bottom: 5px;"> TTS/STT CONVERTOR</label>
+        <hr>
+
+        <div id="audio_control_div" style="display:inline-block;width: 300; text-align: left;margin-top: 10px;">
+            <div>
+                <button class="button" id="backward_button"><i class="icon fas fa-step-backward fa-3x" id="backward_icon"></i></button>
+                <button class="button" id="play_button" value="play">
+                    <i class="icon fas fa-play-circle fa-3x" id="play_pause_icon" ></i>
+                </button>
+                <button class="button" id="stop_button"><i class="icon fas fa-stop-circle fa-3x" id="stop_icon"></i></button>
+                <button class="button" id="forward_button"><i class="icon fas fa-step-forward fa-3x" id="forward_icon"></i></button>
+
+            </div>
+            <div class="time_label">
+
+                <label id="current_time_label">00:00:00</label>
+                <label> / </label>
+                <label id="duration_label">00:00:00</label>
+
+            </div>
+
+            <div class="slidecontainer">
+
+                <input type="range" min="0" max="100" value="0" class="sliderBar" id="audio_duration_bar">
+            </div>
+
+        </div>
+
+
+        <div style="display:inline-block;padding:5; margin: 0;border-radius:10px;text-align: right;vertical-align:middle;">
+
+            <div>
+                <i class="fa fa-volume-up label_icon" style="color:white; padding-left: 5px ;padding-right: 10px;"></i>
+                <input type="range" min="0" max="100" value="100" class="volumeBar" id="audio_volume_bar">
+            </div>
+            </label>
+        </div>
+    </div>
+    <!--
+    <div style="display:inline-block; width: 200; background-color: slategrey;padding:5; margin: 0;">
+        <i class="fa fa-ban label_icon" style="color:white; padding-left: 5px ;padding-right: 10px;"></i>
+        <label style="font-size: 15;   vertical-align:middle;padding:0; margin: 0;padding-right:30;color:white;height: 34px;"> Disable</label>
+        <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label>
+  -->
+    </div>
+
+    <div id="play_list" class="dropdown_div" style=" width: 300; background-color:slategrey;padding:5; margin: 0;margin-top: 5;border-radius:10px">
+        <div id="previous_TTS_header">
+            <label style="font-size: 15;margin-bottom: 5px;color:white">TTS Results</label><i id="previous_TTS_icon" class="fas fa-caret-down" style="color: white;margin-left: 5;"></i>
+        </div>
+        <hr>
+        <div id="previous_TTS_list">
+            <select class="srcs" id="srcs" style="width: 100%;margin-top: 5;" size=5></select>
+        </div>
+    </div>
+
+
+
+    <div id="STT_Results" class="dropdown_div" style=" width: 300; background-color:slategrey;padding:5; margin: 0;margin-top: 5;border-radius:10px;">
+        <div id="STT_Results_header" style="vertical-align: middle;">
+            <label style="font-size: 15;margin-bottom: 5px;color:white;">STT Results</label><i id="STT_Results_icon" class="fas fa-caret-down" style="color: white;margin-left: 5;"></i>
+        </div>
+
+        <hr>
+
+        <div>
+            <label style="font-size: 15;color:white;margin-right: 10;"> Disable Auto Convert</label>
+            <label class="switch">
+                <input id="disable_SST" type="checkbox" >
+                <span id="slider" class="slider round"></span>
+            </label>
+        </div>
+        <hr>
+        <div id="audioNumberText">
+            <!--<label style="color:white;" id="converting_counter">Files Converting: </label>
+            <label style="color:white;" id="converting_audionumber">0</label><br />-->
+            <label style="color:white;" id="success_counter">Files Succssfully Converted : </label>
+            <label style="color:white;" id="success_audionumber">0</label><br />
+            <label style="color:white;" id="failed_counter">Files Failed to Convert: </label>
+            <label style="color:white;" id="failed_audionumber">0</label><br />
+        </div>
+
+    </div>
+</body>
+
+
+
+</html>

@@ -1,8 +1,6 @@
 var audio;
 var srcs;
 
-
-
 //play audio
 function play_audio() {
     if (audio.readyState != 0) {
@@ -94,8 +92,6 @@ $(function() {
     console.log(document.documentElement.outerHTML);
 
 
-
-
     //audio contols
     $("#play_button").click(function() {
         if (audio.paused && audio.readyState != 0) {
@@ -111,13 +107,16 @@ $(function() {
     });
 
     $("#forward_button").click(function() {
-        audio.currentTime = Math.min(audio.currentTime + 10, audio.duration);
+        if (audio.readyState != 0) {
+            audio.currentTime = Math.min(audio.currentTime + 10, audio.duration);
+        }
+
     });
     $("#backward_button").click(function() {
-        audio.currentTime = Math.max(audio.currentTime - 10, 0);
+        if (audio.readyState != 0) {
+            audio.currentTime = Math.max(audio.currentTime - 10, 0);
+        }
     });
-
-
 
 
     //drag duration bar action handler
