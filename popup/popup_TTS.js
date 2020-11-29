@@ -130,7 +130,7 @@ $(function() {
         console.log($(this).val());
     });
 
-    //drag duration bar action handler
+    //drag Vloume bar action handler
     var onDrag_volume_bar = false;
     $("#audio_volume_bar").on('mousedown', function(event) {
         onDrag_volume_bar = true;
@@ -144,7 +144,7 @@ $(function() {
     });
 
 
-    //secltion list action handler
+    //selection list action handler
     document.getElementById('srcs').ondblclick = function() {
         audio.scr = this.options[this.selectedIndex].value;
         audio.load();

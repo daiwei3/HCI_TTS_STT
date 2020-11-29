@@ -21,7 +21,8 @@ chrome.runtime.onMessage.addListener(
             STT_failed_Count += 1;
         }
         chrome.runtime.sendMessage({ type: "Background_updated_STT", val: 1 });
-    });
+    }
+);
 
 
 
