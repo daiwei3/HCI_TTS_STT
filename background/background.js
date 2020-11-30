@@ -53,6 +53,8 @@ function createmenu(){
 // handling the convertion of audio
 // four status of the audio: original, downloading, converting, converted
 function convertAudio(webAudio){
+	window.alert("this should only appear once");
+	/*
 	audioUrl = webAudio.srcUrl;
 	if(audioUrl.length <= 0){
 		stringReturn = "Audio file invalid.";
@@ -104,6 +106,7 @@ function convertAudio(webAudio){
 			chrome.storage.local.set(result);
 		}
 	});
+	*/
 }
 
 chrome.runtime.onInstalled.addListener(function() {
