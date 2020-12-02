@@ -12,7 +12,6 @@ chrome.storage.sync.get(null, function(items) {
     }
 });
 
-
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         console.log(sender.tab ?
@@ -30,16 +29,15 @@ chrome.runtime.onMessage.addListener(
             STT_converting_Count -= 1;
             STT_failed_Count += 1;
         }
-		if (request.type == "check_ac_status") {
-			if(disable_auto_convert) {
-				sendResponse("true");
-			} else {
-				sendResponse("false");
-			}
-		}
+		    if (request.type == "check_ac_status") {
+			    if(disable_auto_convert) {
+				    sendResponse("true");
+			    } else {
+				    sendResponse("false");
+			    }
+		    }
         chrome.runtime.sendMessage({ type: "Background_updated_STT", val: 1 });
     });
-
 
 chrome.runtime.onInstalled.addListener(function() {
 	// initialize user's option
@@ -48,8 +46,6 @@ chrome.runtime.onInstalled.addListener(function() {
         "autoCoversion": false
     });
 });
-
-
 
 $(document).ready(function() {
 
