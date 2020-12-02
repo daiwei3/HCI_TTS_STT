@@ -1,7 +1,16 @@
 var STT_converting_Count = 0;
 var STT_failed_Count = 0;
 var STT_success_Count = 0;
-var disable_auto_convert = false;
+var disable_auto_convert = true;
+
+// initialize auto conversion flag
+chrome.storage.sync.get(null, function(items) {
+    if (Object.keys(items).length == 0) {
+        alert("something wrong with the storage...");
+    } else {
+        disable_auto_convert = items.autoCoversion == false ? true : false;
+    }
+});
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
@@ -20,10 +29,23 @@ chrome.runtime.onMessage.addListener(
             STT_converting_Count -= 1;
             STT_failed_Count += 1;
         }
+		    if (request.type == "check_ac_status") {
+			    if(disable_auto_convert) {
+				    sendResponse("true");
+			    } else {
+				    sendResponse("false");
+			    }
+		    }
         chrome.runtime.sendMessage({ type: "Background_updated_STT", val: 1 });
     });
 
-
+chrome.runtime.onInstalled.addListener(function() {
+	// initialize user's option
+    chrome.storage.sync.clear();
+    chrome.storage.sync.set({
+        "autoCoversion": false
+    });
+});
 
 $(document).ready(function() {
 
