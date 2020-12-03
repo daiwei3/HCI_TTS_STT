@@ -1,0 +1,30 @@
+.result {
+  position: fixed !important;
+}
+
+.resultBox {
+  width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-break:break-all;
+  background-color: slategrey;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  margin: 0px;
+  border-radius: 4px;
+  font-family: "Montserrat";
+  font-weight: normal;
+  font-size: 14px;
+  position: absolute;
+  text-decoration: none;
+  line-height: normal;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-animation: fade-in 0.3s ease;
+  -moz-animation: fade-in 0.3s ease;
+  -o-animation: fade-in 0.3s ease;
+  animation: fade-in 0.3s ease;
+}

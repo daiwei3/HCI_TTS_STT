@@ -10,8 +10,6 @@ TTS/STT
 
 
 function Install_Context_menu() {
-
-
     // Create one tts selection in menu
     console.log("init context menu ");
     // tts
@@ -28,11 +26,11 @@ function Install_Context_menu() {
     });
 
 
-    // stt
+    // stt, context menu section created in the first time
     chrome.contextMenus.create({
         "title": "Convert audio to text",
         "contexts": ["audio"],
-        "id": "convert_audio",
+        "id": "stt"
     });
 
 
@@ -71,7 +69,6 @@ function onClickHandler(info, tab) {
 
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
-
 
 
 // Set up context menu tree at install time.

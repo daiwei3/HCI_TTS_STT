@@ -18,8 +18,22 @@ $(document).ready(function() {
     $('#disable_SST').click(function() {
         if ($(this).is(':checked')) {
             chrome.extension.getBackgroundPage().disable_auto_convert = true;
-        } else {
-            chrome.extension.getBackgroundPage().disable_auto_convert = false;
+			      // to local storage
+			      chrome.storage.sync.set({
+			      	"autoCoversion": false
+			      });
+			      // update context menu
+			      chrome.contextMenus.create({
+			      	"title": "Convert audio to text",
+			      	"contexts": ["audio"],
+			      	"id": "stt"
+			      });
+              } else {
+                  chrome.extension.getBackgroundPage().disable_auto_convert = false;
+			      chrome.storage.sync.set({
+			      	"autoCoversion": true
+			      });
+			      chrome.contextMenus.remove("stt");
         }
     });
 
