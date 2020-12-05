@@ -42,7 +42,6 @@ function onClickHandler(info, tab) {
     console.log("item " + info.menuItemId + " was clicked");
     console.log("info: " + JSON.stringify(info));
     console.log("tab: " + JSON.stringify(tab));
-
     getSelection()
 
     if (info.menuItemId == "Convert_to_audio") {
@@ -56,20 +55,15 @@ function onClickHandler(info, tab) {
         } else {
             audioEle.pause();
         }
-    } else if (info.menuItemId == "convert_audio") {
-        //inject is
-
-        if (info.srcUrl) {
-
-        }
-
-
+    } else if (info.menuItemId == "stt") {
+        //tell content script to convert this audio
+		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+			chrome.tabs.sendMessage(tabs[0].id, {type:"convert"});
+		});
     }
 };
 
-
 chrome.contextMenus.onClicked.addListener(onClickHandler);
-
 
 // Set up context menu tree at install time.
 chrome.runtime.onInstalled.addListener(Install_Context_menu());

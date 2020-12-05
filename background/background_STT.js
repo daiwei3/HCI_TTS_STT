@@ -2,6 +2,8 @@ var STT_converting_Count = 0;
 var STT_failed_Count = 0;
 var STT_success_Count = 0;
 var disable_auto_convert = true;
+var result_coord_x = "10px";
+var result_coord_y = "50px";
 
 // initialize auto conversion flag
 chrome.storage.sync.get(null, function(items) {
@@ -56,6 +58,13 @@ chrome.runtime.onMessage.addListener(
                 sendResponse("false");
             }
         }
+		if(request.type == "remember_this") {
+			result_coord_x = request.x;
+			result_coord_y = request.y;
+		}
+		if(request.type == "tell_me_the_position") {
+			sendResponse({x:result_coord_x, y:result_coord_y});
+		}
         chrome.runtime.sendMessage({ type: "Background_updated_STT", val: 1 });
         return true;
     }
