@@ -53,7 +53,7 @@ $(function() {
     srcs = chrome.extension.getBackgroundPage().srcs;
 
     /**initilize window components**/
-    console.log(audio.paused)
+    console.log(srcs)
 
     //init play / pause icon
     if (audio.paused) {
@@ -74,12 +74,12 @@ $(function() {
 
 
     //init src list
-    for (var i = 0; i < srcs.length; i++) {
+    for (var i = srcs.length - 1; i >= 0; i--) {
         console.log(srcs[i]);
-        var newOption = new Option(srcs[i].title, srcs[i].src);
+        var newOption = new Option(srcs[i].title, i);
         document.getElementById("srcs").appendChild(newOption);
     }
-    $('#previous_TTS_list').toggle(0);
+    //$('#previous_TTS_list').toggle(0);
     //toogle previous TTS div
     $('#previous_TTS_header').click(function() {
         console.log("click")
@@ -130,7 +130,7 @@ $(function() {
         console.log($(this).val());
     });
 
-    //drag duration bar action handler
+    //drag Vloume bar action handler
     var onDrag_volume_bar = false;
     $("#audio_volume_bar").on('mousedown', function(event) {
         onDrag_volume_bar = true;
@@ -144,9 +144,9 @@ $(function() {
     });
 
 
-    //secltion list action handler
+    //selection list action handler
     document.getElementById('srcs').ondblclick = function() {
-        audio.scr = this.options[this.selectedIndex].value;
+        audio.src = srcs[this.options[this.selectedIndex].value].src;
         audio.load();
         play_audio();
     };
